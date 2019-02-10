@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  get 'building/index'
-  get 'building/show'
-  get 'room/index'
-  get 'room/show'
+
   devise_for :users
   root to: 'pages#home'
+
+  resources :buildings do
+    resources :rooms
+  end
+
+  get 'my_hk', to: 'dashboard#index', as: "my_hk"
 
 end
