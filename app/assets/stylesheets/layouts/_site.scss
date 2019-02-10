@@ -1,5 +1,5 @@
 html {
-  background: $site_background;
+  background: $light-gray;
 }
 
 body {
@@ -35,11 +35,18 @@ select {
 }
 
 .brand_font {
-  font-family: "Tron", "Raleway", "Helvetica", "sans-serif";
+  font-family: "Good Times", "Raleway", "Helvetica", "sans-serif";
 }
 
 
 .add-absolute-position {
   position: absolute;
   z-index: 1000;
+}
+
+.text_border_headliner {
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8),
+              -1px -1px 0 rgba(0, 0, 0, 0.8),
+              -1px 1px 0 rgba(0, 0, 0, 0.8),
+              1px -1px 0 rgba(0, 0, 0, 0.8);
 }
