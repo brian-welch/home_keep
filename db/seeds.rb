@@ -210,7 +210,6 @@ end
       n.save!
       n.created_at = (n.created_at - (j * 86400))
       n.save!
-      puts "#{n.created_at}§#{building.name}§#{room.name}§#{out_temp_gen}§#{in_temp_gen}"
     end
 
   end
