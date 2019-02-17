@@ -1,2 +1,82 @@
-<h1>Room#show</h1>
-<p>Find me in app/views/room/show.html.erb</p>
+<div class="container">
+
+  <div class="row">
+    <div class="col-xs-12 ">
+      <h1 class="page_headline"> <%= "#{@room.name.split.map(&:capitalize).join(" ")}'s Room Details" %></h1>
+      <hr>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <%= link_to building_path(@room.building.id), style: "font-size: 15px;" do %>
+        <i class="fas fa-arrow-left"></i> To <%= @room.building.name.split.map(&:capitalize).join(" ") %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-5 col-md-4">
+      <div class="building_floorplan_outer">
+        <div class="building_floorplan_inner">
+          <img src="https://static1.squarespace.com/static/558b0741e4b06f25237894f2/t/5a90cd50c830257a34234405/1519439194245/unfurnished+(87).png?format=1500w" alt="">
+        </div>
+      </div>
+      <hr class="hidden-sm hidden-md hidden-lg hidden-xl">
+    </div>
+
+    <div class="col-xs-12 col-sm-7 col-md-8">
+      <div class="list_page_outer">
+        <div class="list_page_inner">
+          <table class="list_table table-condensed">
+            <tr>
+              <th></th>
+              <th>Room Temp</th>
+              <th>Room Humidity</th>
+              <th class="hidden-xs">Room Size</th>
+              <th>Ventilation Type</th>
+              <th>Outside Air Vent.</th>
+            </tr>
+              <tr>
+                <td></td>
+                <td><%= @room.temp.round(1) %>°</td>
+                <td><%= @room.humidity.round(1) %>%</td>
+                <td class="hidden-xs"><%= @room.sqm %>m2</td>
+                <td><%= @room.ventilation_type.name.capitalize %></td>
+                <td><%= @room.outside_air_access == false ? "No" : "Yes" %></td>
+              </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-xs-12 col-md-4">
+      <h5 align="center" style="font-weight: bold; color: rgba(58,130,180,1) !important; text-decoration: underline;">Room Temp Log: Pasted 30 days</h5>
+      <ul>
+        <li>Avg. Temperature: <%= "#{(@inside_temp_array.reduce(:+) / @inside_temp_array.count).round(1)}°" %></li>
+        <li>Avg. Humidity: <%= "#{(@inside_hum_array.reduce(:+) / @inside_hum_array.count).round(1)}%" %></li>
+        <li>High Temperature: <%= "#{@inside_temp_array.sort.pop}°" %></li>
+        <li>High Humidity: <%= "#{@inside_hum_array.sort.pop}%" %></li>
+      </ul>
+    </div>
+    <div class="col-xs-12 col-md-8">
+      <div class="bar_chart_container">
+        <table>
+          <tr>
+            <% @inside_temp_array.each do |temp| %>
+            <td title='<%= "#{temp}°" %>'>
+              <div style='height: <%= "#{((1 - (temp / (@inside_temp_array.sort{ |x,y| y <=> x }.first) )) * 200).to_i}" %>px;'></div>
+              <span class="hidden-xs"><%= "#{temp}" %></span>
+            </td>
+            <% end %>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

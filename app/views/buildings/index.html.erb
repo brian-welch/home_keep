@@ -1,2 +1,41 @@
-<h1>Building#index</h1>
-<p>Find me in app/views/building/index.html.erb</p>
+<div class="container">
+
+  <div class="row">
+    <div class="col-xs-12 ">
+      <h1 class="page_headline"> <%= "#{@user.first_name.capitalize} #{@user.last_name.capitalize}'s Building List" %></h1>
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
+      <div class="list_page_outer">
+        <div class="list_page_inner">
+          <table class="list_table table-condensed">
+            <tr>
+              <th>Property Name</th>
+              <th>Room Count</th>
+              <th>Ambient Temp</th>
+              <th class="hidden-xs">Ambient Humidity</th>
+              <th class="hidden-xs">Avg. Inside Temp</th>
+              <th class="hidden-xs">Avg. Inside Humidity</th>
+            </tr>
+            <% @all_buildings.each do |building| %>
+              <tr>
+                <td><%= link_to building.name.split.map(&:capitalize).join(" "), building_path(building.id) %></td>
+                <td><%= @all_rooms.where(building: building).count %></td>
+                <td><%= building.outside_temp.round(1) %>°</td>
+                <td class="hidden-xs"><%= building.outside_humidity.round(1) %>%</td>
+                <td class="hidden-xs">
+                  <%= (@all_rooms.where(building: building).sum { |room| room.temp } / @all_rooms.where(building: building).count).round(1) %>°
+                </td>
+                <td class="hidden-xs">
+                  <%= (@all_rooms.where(building: building).sum { |room| room.humidity } / @all_rooms.where(building: building).count).round(1) %>%
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

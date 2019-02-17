@@ -1,6 +1,17 @@
-    <div class="logo-centerer">
-      <div>
-        <%= image_tag "hk_logo_500x233.png", style: "" %>
-        <h1 class="brand_font text_border_headliner" style="font-size: 3.5em; color: #3a82b4;" align="center">home keep</h1>
-      </div>
+  <div class="logo-centerer">
+    <div class="home_landing_box">
+      <%= image_tag "acs_logo_500x165.png", style: "" %>
+      <h1 class="brand_font text_border_headliner home_landing_headline">autonomic climate<br>systems</h1>
+
+      <hr>
+
+      <% if user_signed_in? %>
+      <% else %>
+        <%= link_to new_user_session_path, class: "" do %>
+        <button class="btn btn-primary">
+          <i class="fas fa-sign-in-alt"></i> <%= t(".sign_in", default: "Log in") %>
+        </button>
+        <% end %>
+      <% end %>
     </div>
+  </div>

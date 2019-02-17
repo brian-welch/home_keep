@@ -1,0 +1,36 @@
+.avatar_inner {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  .avatar_image_container {
+    position: relative;
+    width: 100%;
+    &:before {
+      content: "";
+      display: block;
+      padding-top: 100%;
+    }
+    .avatar_image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg,
+        rgba(0, 0, 50, 0.75) 0%,
+        rgba(0, 0, 0, 0) 40%,
+        rgba(0, 0, 0, 0) 60%,
+        rgba(50, 0, 0, 0.9) 100%),
+        url('http://i.pravatar.cc/400?img=11') no-repeat;
+      background-size: cover !important;
+      background-position: center center;
+      overflow: hidden;
+      box-shadow:
+                  0 0 0 4px rgba(222, 222, 222, 1),
+                  0 0 0 5px $site-primary,
+                  inset 0 10px 20px rgba(0, 0, 0, 0.9),
+                  2px 2px 7px 6px rgba(0, 0, 0, 0.2);
+    }
+  }
+}

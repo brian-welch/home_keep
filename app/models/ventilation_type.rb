@@ -1,0 +1,2 @@
+class VentilationType < ApplicationRecord
+end

@@ -3,10 +3,10 @@ html {
 }
 
 body {
-  padding: 0 0 50px 0;
+  padding: 0 0 0 0;
 }
 
-div, p, i, li, th, td, span, ul, ol, button, input, tr, a {
+div, p, i, li, th, td, span, ul, ol, button, input, tr, a, img {
   transition: all ease 400ms;
 }
 
@@ -18,6 +18,7 @@ h1, h2, h3, h4, h5, h6 {
 
 hr {
   border-top: 1px solid darken($site_primary, 5%);
+  margin: 10px 0;
 }
 
 th {
@@ -45,8 +46,21 @@ select {
 }
 
 .text_border_headliner {
-  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8),
-              -1px -1px 0 rgba(0, 0, 0, 0.8),
-              -1px 1px 0 rgba(0, 0, 0, 0.8),
-              1px -1px 0 rgba(0, 0, 0, 0.8);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.8),
+               0 5px 1px rgba(0, 0, 0, 0.08);
+}
+
+.page_headline {
+  font-size: 1.8em;
+  color: #3a82b4;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.8);
+}
+
+.vert_centerer {
+  display: flex;
+  align-items: center;
+}
+
+.container_fitter {
+  min-height: calc(100vh - 150px)
 }

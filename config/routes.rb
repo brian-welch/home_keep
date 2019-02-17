@@ -7,6 +7,6 @@ Rails.application.routes.draw do
     resources :rooms
   end
 
-  get 'my_hk', to: 'dashboard#index', as: "my_hk"
+  get 'my_acs', to: 'dashboard#index', as: "my_acs"
 
 end

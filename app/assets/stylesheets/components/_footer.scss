@@ -1,0 +1,29 @@
+.footer_container_outer {
+  background-color: darken($site-primary, 20%);
+  color: #f0f0f0;
+  padding: 20px 0 70px 0;
+  margin: 25px 0 0 0;
+}
+
+.footer_container_inner {
+  div {
+    display: flex;
+    justify-content: space-around;
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li {
+        display: inline-block;
+        width: 35px;
+        margin: 5px;
+        img {
+          opacity: 0.6;
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}

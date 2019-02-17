@@ -1,0 +1,27 @@
+.list_page_inner {
+  table {
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px $site-primary;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    margin-bottom: 25px;
+  }
+  table tr:not(:first-child):hover {
+    background-color: rgba(58,130,180,0.2);
+  }
+  table tr {
+    :first-child {
+    }
+    :nth-child(1) {
+      text-align: right;
+    }
+    th {
+      font-size: 15px;
+      text-align: center !important;
+      background-color: darken(rgba(58,130,180,1),20%);
+      color: #f0f0f0;
+      font-weight: 500;
+    }
+  }
+}

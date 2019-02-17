@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :buildings, dependent: :destroy
   has_many :rooms, through: :buildings, dependent: :destroy
+  belongs_to :user_role
 end

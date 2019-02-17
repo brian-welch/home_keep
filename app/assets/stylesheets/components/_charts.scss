@@ -1,0 +1,41 @@
+.bar_chart_container {
+  border-radius: 1px;
+  padding: 5px;
+  border-left: dashed 2px lighten($site-primary, 20%);
+  border-right: dashed 2px lighten($site-primary, 20%);
+  box-shadow: 0 0 0 0px #f4f4f4,
+              0 2px 0 0px lighten($site-primary, 20%),
+              0 -2px 0 0px lighten($site-primary, 20%);
+  height: 200px;
+  table {
+    background-color: #f4f4f4;
+    height: 100%;
+    width: 100%;
+    tr td {
+      box-shadow: inset calc(1px * 0.5) 0 0 #f4f4f4;
+      height: 100%;
+      // background-color: grey;
+      background: linear-gradient(
+        0deg, rgba(58,130,180,1) 0%,
+        rgba(224,89,40,1) 100%);
+      position: relative;
+      text-align: center;
+      span {
+        position: relative;
+        bottom: -15px;
+        transform: rotate(-0deg);
+        // left: -3px;
+        // bottom: 15px;
+        font-size: 9px;
+        color: #f4f4f4;
+        text-shadow: 0 calc(1px * 0.75) 0 rgba(0, 0, 0, 0.9);
+      }
+      div {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        background-color: #f4f4f4;
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+<div class="footer_container_outer">
+  <div class="container">
+    <div class="footer_container_inner">
+      <div class="col-xs-12 col-md-4">
+        <ul>
+          <li><%= link_to(image_tag("soc_media/twitter.svg"), "#") %></li>
+          <li><%= link_to(image_tag("soc_media/google.svg"), "#") %></li>
+          <li><%= link_to(image_tag("soc_media/android.svg"), "#") %></li>
+          <li><%= link_to(image_tag("soc_media/facebook.svg"), "#") %></li>
+          <li><%= link_to(image_tag("soc_media/linkedin.svg"), "#") %></li>
+        </ul>
+      </div>
+      <div class="col-xs-12 col-md-4 hidden-xs">
+        <%= "<h5>Copyright &copy;&nbsp;&nbsp;|&nbsp;&nbsp;#{Date.today}</h5>".html_safe %>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <ul>
+          <li><%= link_to(image_tag("soc_media/contact.svg"), "#") %></li>
+          <li><%= link_to(image_tag("soc_media/map.svg"), "#") %></li>
+        </ul>
+      </div>
+      <div class="col-xs-12 col-md-4 hidden-xl hidden-lg hidden-md hidden-sm">
+        <%= "<h5>Copyright &copy;&nbsp;&nbsp;|&nbsp;&nbsp;#{Date.today}</h5>".html_safe %>
+      </div>
+    </div>
+  </div>
+</div>

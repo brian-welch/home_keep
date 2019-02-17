@@ -1,16 +1,16 @@
 <% if user_signed_in? %>
   <ul class="nav navbar-nav">
     <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="brand_font_nav">MY HK</span> <span class="caret"></span></a>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="brand_font_nav">MY ACS</span> <span class="caret"></span></a>
       <ul class="dropdown-menu">
-        <li><%= link_to "Dashboard", my_hk_path %></li>
-        <li><%= link_to "Buildings", buildings_path %></li>
-        <li role="separator" class="divider"></li>
-        <li><a href="#">Separated link</a></li>
-        <li role="separator" class="divider"></li>
-        <li><a href="#">One more separated link</a></li>
+        <li><%= link_to "Dashboard", my_acs_path %></li>
+        <% @all_buildings.each do |building| %>
+        <li><%= link_to building.name.split.map(&:capitalize).join(" "), building_path(building.id) %></li>
+        <% end %>
       </ul>
     </li>
+      <li><a href="#">Link</a></li>
+      <li><a href="#">One More Link</a></li>
   </ul>
 <% else %>
 <% end %>

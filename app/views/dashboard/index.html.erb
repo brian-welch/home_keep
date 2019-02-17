@@ -1,2 +1,57 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
+<div class="container container_fitter">
+
+  <div class="row">
+    <div class="col-xs-12 ">
+      <h1 class="page_headline"> Dashboard </h1>
+      <hr>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 col-md-3 hidden-xs">
+      <div class="dashboard_total_container_outer">
+        <div class="dashboard_total_container_inner">
+          <div class="dashboard_total_upper dashboard_matrix_number">
+            <%= @room_count %>
+            <h5 align="center">Total # of Rooms</h5>
+          </div>
+          <div class="dashboard_total_lower dashboard_matrix_number">
+            <%= @total_sqm %>
+            <h5 align="center">Total Sqm</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-8 col-md-9">
+      <div class="list_page_inner">
+        <table class="list_table table-condensed">
+          <tr>
+            <th class="hidden-sm hidden-md hidden-lg hidden-xl"></th>
+            <th colspan="2" class="hidden-xs">Property</th>
+            <th class="hidden-xs">Room Count</th>
+            <th>Current<br>Outside Temp</th>
+            <th>Current<br>Outside Humidity</th>
+            <th class="hidden-xs">Avg<br>Room Temp</th>
+            <th class="hidden-xs">Avg<br>Room Humidity</th>
+          </tr>
+          <% @all_buildings.each do |building| %>
+            <tr>
+              <td><%= link_to building.name.split.map(&:capitalize).join(" "), building_path(building.id) %></td>
+              <td class="hidden-xs"><%= link_to "<i class='fas fa-#{buliding_typ_icon(building)}'></i>".html_safe, building_path(building.id) %></td>
+              <td class="hidden-xs"><%= @all_rooms.where(building: building).count %></td>
+              <td><%= building.outside_temp %>°</td>
+              <td><%= building.outside_humidity %>%</td>
+
+              <td class="hidden-xs"><%= (@all_rooms.where(building: building).sum { |room| room.temp } / @all_rooms.where(building: building).count).round(1) %>°</td>
+              <td class="hidden-xs"><%= (@all_rooms.where(building: building).sum { |room| room.humidity } / @all_rooms.where(building: building).count).round(1) %>%</td>
+            </tr>
+          <% end %>
+
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+

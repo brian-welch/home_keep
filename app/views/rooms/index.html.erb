@@ -1,2 +1,41 @@
-<h1>Room#index</h1>
-<p>Find me in app/views/room/index.html.erb</p>
+<div class="container">
+
+  <div class="row">
+    <div class="col-xs-12 ">
+      <h1 class="page_headline"> <%= "#{@user.first_name.capitalize} #{@user.last_name.capitalize}'s Room List" %></h1>
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
+      <div class="list_page_outer">
+        <div class="list_page_inner">
+          <table class="list_table table-condensed">
+            <tr>
+              <th>Room Name</th>
+              <th>Property Name</th>
+              <th>Ambient Temp</th>
+              <th class="hidden-xs">Ambient Humidity</th>
+              <th class="hidden-xs">Inside Temp</th>
+              <th class="hidden-xs">Inside Humidity</th>
+            </tr>
+            <% @all_rooms.each do |room| %>
+              <tr>
+                <td><%= room.name.capitalize %></td>
+                <td><%= link_to @all_buildings.find(room.building_id).name.capitalize, building_path(room.building_id) %></td>
+                <td><%= @all_buildings.find(room.building_id).outside_temp.round(1) %>°</td>
+                <td class="hidden-xs"><%= @all_buildings.find(room.building_id).outside_humidity.round(1) %>%</td>
+                <td class="hidden-xs">
+                  <%= room.temp.round(1) %>°
+                </td>
+                <td class="hidden-xs">
+                  <%= room.humidity.round(1) %>%
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

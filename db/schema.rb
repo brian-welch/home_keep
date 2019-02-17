@@ -10,31 +10,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_10_150852) do
+ActiveRecord::Schema.define(version: 2019_02_16_073509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "building_types", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "buildings", force: :cascade do |t|
     t.string "name"
     t.string "city"
+    t.string "street"
+    t.string "post_code"
+    t.string "country"
     t.decimal "outside_temp", precision: 5, scale: 2
     t.decimal "outside_humidity", precision: 5, scale: 2
     t.bigint "user_id"
+    t.bigint "building_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["building_type_id"], name: "index_buildings_on_building_type_id"
     t.index ["user_id"], name: "index_buildings_on_user_id"
+  end
+
+  create_table "climate_logs", force: :cascade do |t|
+    t.bigint "building_id"
+    t.bigint "room_id"
+    t.decimal "outside_temp"
+    t.decimal "outside_humidity"
+    t.decimal "room_temp"
+    t.decimal "room_humidity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["building_id"], name: "index_climate_logs_on_building_id"
+    t.index ["room_id"], name: "index_climate_logs_on_room_id"
   end
 
   create_table "rooms", force: :cascade do |t|
     t.string "name"
     t.integer "sqm"
+    t.boolean "outside_air_access"
     t.decimal "humidity", precision: 5, scale: 2
     t.decimal "temp", precision: 5, scale: 2
     t.bigint "building_id"
+    t.bigint "ventilation_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["building_id"], name: "index_rooms_on_building_id"
+    t.index ["ventilation_type_id"], name: "index_rooms_on_ventilation_type_id"
+  end
+
+  create_table "user_roles", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,10 +74,27 @@ ActiveRecord::Schema.define(version: 2019_02_10_150852) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "mobile_number"
+    t.string "job_title"
+    t.bigint "user_role_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["user_role_id"], name: "index_users_on_user_role_id"
   end
 
+  create_table "ventilation_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "buildings", "building_types"
   add_foreign_key "buildings", "users"
+  add_foreign_key "climate_logs", "buildings"
+  add_foreign_key "climate_logs", "rooms"
   add_foreign_key "rooms", "buildings"
+  add_foreign_key "rooms", "ventilation_types"
+  add_foreign_key "users", "user_roles"
 end
